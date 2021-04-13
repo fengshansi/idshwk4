@@ -19,7 +19,9 @@ event zeek_init() {
                             # 首先取得Reducer统计结果
                             local r_all = result["response"];
                             local r_404 = result["response404"];
-                            if (r_404$num > 2 && r_404$num / r_all$num > 0.2 && r_404$unique / r_404$num > 0.5) {
+                            # if (r_404$num > 2 && r_404$num / r_all$num > 0.2 && r_404$unique / r_404$num > 0.5)
+                            if (r_404$num > 2 && 10*r_404$num / r_all$num > 2 && 10*r_404$unique / r_404$num > 5) 
+                            {
                                 print fmt("%s is a scanner with %d scan attemps on %d urls", key$host, r_404$num, r_404$unique);
                             } 
                         }
